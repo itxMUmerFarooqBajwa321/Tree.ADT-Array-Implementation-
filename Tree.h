@@ -8,7 +8,7 @@ class Tree
 {
     vector<T> * data;
 public:
-    Tree();
+    Tree(vector<T> * =nullptr);
     Tree(const Tree &);
     Tree(Tree &&);
     void addElement(const T & );
@@ -21,8 +21,11 @@ public:
     ~Tree();
 };
 template <typename T>
-Tree<T>::Tree():data(nullptr)
-{}
+Tree<T>::Tree(vector<T> * d):data(nullptr)
+{
+    if(d)
+        data=d;
+}
 template <typename T>
 Tree<T>::Tree(const Tree<T> & ref):Tree()
 {
@@ -59,7 +62,7 @@ Tree<T>::Tree(Tree<T> && ref):Tree()
 template <typename T>
 void Tree<T>::addElement(const T & ele)
 {
-    if(this->operator!())
+    if(! (*this) )
         data=new vector<T>;
     data->push_back(ele);
 }
